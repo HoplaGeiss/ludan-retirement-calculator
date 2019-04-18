@@ -59,11 +59,11 @@ function numberValidator(control: FormControl): { [key: string]: any } {
 })
 export class NgxLudanRetirementCalculatorComponent implements OnInit {
   form = this.fb.group({
-    capitalInvested: [3000, [numberValidator.bind(this)]],
+    capitalInvested: [10000, [numberValidator.bind(this)]],
     investmentPerMonth: [1000, [numberValidator.bind(this)]],
-    interestRate: [0.04, [numberValidator.bind(this)]],
-    numberRetirementYears: [50, [numberValidator.bind(this)]],
-    monthlyDividendGoal: [3000, [numberValidator.bind(this)]]
+    interestRate: [0.02, [numberValidator.bind(this)]],
+    numberRetirementYears: [30, [numberValidator.bind(this)]],
+    monthlyDividendGoal: [2000, [numberValidator.bind(this)]]
   });
   savingGoal: number;
   monthLeftUntilRetirement: number;
