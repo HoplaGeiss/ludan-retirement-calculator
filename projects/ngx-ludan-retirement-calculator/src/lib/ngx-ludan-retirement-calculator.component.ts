@@ -36,7 +36,7 @@ function numberValidator(control: FormControl): { [key: string]: any } {
 
         <div class="input-group">
           <input type="text" formControlName="numberRetirementYears" />
-          <label>Years of retirement</label>
+          <label>Life expectancy from retirement time</label>
           <span class="bar"></span>
         </div>
 
