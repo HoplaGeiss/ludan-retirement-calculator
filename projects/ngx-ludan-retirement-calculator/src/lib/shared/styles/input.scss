@@ -1,0 +1,76 @@
+@import './typography.scss';
+@import './animation.scss';
+@import './colours.scss';
+
+$hl-color: ludan-color('primary');
+$muted-color: ludan-color('grey', 'light');
+$normal-color: black;
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  @include font-family();
+
+  input {
+    margin-top: 30px;
+    background: none;
+    color: $normal-color;
+    font-size: 16px;
+    padding: 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $muted-color;
+    outline: none;
+
+    &.ng-invalid ~ label {
+      color: red;
+    }
+
+    &.ng-invalid:not(:focus) {
+      border-bottom-color: red;
+    }
+
+    &.ng-invalid ~ .bar:before {
+      background: red;
+    }
+
+    &:focus:not(.ng-invalid) ~ label {
+      color: $hl-color;
+    }
+    &:focus ~ .bar:before {
+      width: 100%;
+    }
+  }
+
+  label {
+    color: $normal-color;
+    font-size: 16px;
+    position: absolute;
+    top: -20px;
+    transition: $transition-time ease all;
+  }
+
+  .bar {
+    position: relative;
+    display: block;
+    width: 100%;
+    &:before {
+      content: '';
+      height: 2px;
+      width: 0;
+      bottom: 0px;
+      position: absolute;
+      background: $hl-color;
+      transition: $transition-time ease all;
+      left: 0%;
+    }
+  }
+}

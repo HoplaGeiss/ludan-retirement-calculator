@@ -1,0 +1,15 @@
+@import './shared/styles/input.scss';
+@import './shared/styles/typography.scss';
+
+.retirement-calculator {
+  @include font-family();
+
+  .form {
+    width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .result {
+    overflow: auto;
+  }
+}

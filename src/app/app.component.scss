@@ -1,0 +1,13 @@
+@import '../../projects/ngx-ludan-retirement-calculator/src/lib/shared/styles/typography.scss';
+
+.wrapper {
+  @include font-family();
+
+  h1 {
+    @include fluid-type(320px, 1200px, 26px, 30px);
+  }
+
+  ngx-ludan-retirement-calculator {
+    display: flex;
+  }
+}

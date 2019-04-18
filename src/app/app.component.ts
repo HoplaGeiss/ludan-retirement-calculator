@@ -4,7 +4,10 @@ import { Component } from '@angular/core';
   selector: 'ludan-root',
   styleUrls: ['./app.component.scss'],
   template: `
-    <ngx-ludan-retirement-calculator></ngx-ludan-retirement-calculator>
+    <div class="wrapper">
+      <h1>Retirement Calculator</h1>
+      <ngx-ludan-retirement-calculator></ngx-ludan-retirement-calculator>
+    </div>
   `
 })
 export class AppComponent {}
