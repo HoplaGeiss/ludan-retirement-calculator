@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-ludan-retirement-calculator": [
+        "dist/ngx-ludan-retirement-calculator"
+      ],
+      "ngx-ludan-retirement-calculator/*": [
+        "dist/ngx-ludan-retirement-calculator/*"
+      ]
+    }
   }
 }

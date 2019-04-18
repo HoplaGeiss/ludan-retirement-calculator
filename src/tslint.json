@@ -1,17 +1,9 @@
 {
   "extends": "../tslint.json",
   "rules": {
-    "directive-selector": [
-      true,
-      "attribute",
-      "app",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "app",
-      "kebab-case"
-    ]
+    "directive-selector": [true, "attribute", "ludan", "kebab-case"],
+    "component-selector": [true, "element", "ludan", "kebab-case"],
+    "curly": false,
+    "semicolon": [true, "always", "ignore-bound-class-methods"]
   }
 }
