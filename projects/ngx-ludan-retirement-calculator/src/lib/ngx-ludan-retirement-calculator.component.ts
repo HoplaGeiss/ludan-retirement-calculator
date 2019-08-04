@@ -61,7 +61,7 @@ export class NgxLudanRetirementCalculatorComponent implements OnInit {
   form = this.fb.group({
     capitalInvested: [10000, [numberValidator.bind(this)]],
     investmentPerMonth: [1000, [numberValidator.bind(this)]],
-    interestRate: [0.02, [numberValidator.bind(this)]],
+    interestRate: [2, [numberValidator.bind(this)]],
     numberRetirementYears: [30, [numberValidator.bind(this)]],
     monthlyDividendGoal: [2000, [numberValidator.bind(this)]]
   });
@@ -84,7 +84,7 @@ export class NgxLudanRetirementCalculatorComponent implements OnInit {
   calculateSavingGoal = () => {
     const monthlyDividendGoal = this.form.get('monthlyDividendGoal').value;
     const numberRetirementYears = this.form.get('numberRetirementYears').value;
-    const interestRate = this.form.get('interestRate').value;
+    const interestRate = this.form.get('interestRate').value / 100;
 
     this.savingGoal =
       (12 * monthlyDividendGoal) / interestRate -
@@ -92,7 +92,7 @@ export class NgxLudanRetirementCalculatorComponent implements OnInit {
   }
 
   calculateMonthLeftToRetirement = () => {
-    const interestRate = this.form.get('interestRate').value;
+    const interestRate = this.form.get('interestRate').value / 100;
     const capitalInvested = this.form.get('capitalInvested').value;
     const investmentPerMonth = this.form.get('investmentPerMonth').value;
 
