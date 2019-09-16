@@ -10,6 +10,14 @@ function numberValidator(control: FormControl): { [key: string]: any } {
   return null;
 }
 
+function greaterThanZero(control: FormControl): { [key: string]: any } {
+  if (control.value < 1) {
+    return { smallerThanZero: true };
+  }
+
+  return null;
+}
+
 @Component({
   selector: 'ngx-ludan-retirement-calculator',
   styleUrls: ['./ngx-ludan-retirement-calculator.component.scss'],
@@ -60,10 +68,10 @@ function numberValidator(control: FormControl): { [key: string]: any } {
 export class NgxLudanRetirementCalculatorComponent implements OnInit {
   form = this.fb.group({
     capitalInvested: [10000, [numberValidator.bind(this)]],
-    investmentPerMonth: [1000, [numberValidator.bind(this)]],
+    investmentPerMonth: [1000, [numberValidator.bind(this), greaterThanZero.bind(this)]],
     interestRate: [2, [numberValidator.bind(this)]],
-    numberRetirementYears: [30, [numberValidator.bind(this)]],
-    monthlyDividendGoal: [2000, [numberValidator.bind(this)]]
+    numberRetirementYears: [30, [numberValidator.bind(this), greaterThanZero.bind(this)]],
+    monthlyDividendGoal: [2000, [numberValidator.bind(this), greaterThanZero.bind(this)]]
   });
   savingGoal: number;
   monthLeftUntilRetirement: number;
@@ -74,10 +82,28 @@ export class NgxLudanRetirementCalculatorComponent implements OnInit {
   ngOnInit() {
     this.calculateSavingGoal();
     this.calculateMonthLeftToRetirement();
+    this.getSettings();
 
-    this.form.valueChanges.subscribe(val => {
+    this.form.valueChanges.subscribe(() => {
+      if (this.form.invalid) {
+        return;
+      }
+      this.saveSettings();
       this.calculateSavingGoal();
       this.calculateMonthLeftToRetirement();
+    });
+  }
+
+  saveSettings = () => {
+    Object.keys(this.form.value).forEach(key => {
+      localStorage.setItem('hopla_' + key, this.form.get(key).value);
+    });
+  }
+
+  getSettings = () => {
+    Object.keys(this.form.value).forEach(key => {
+      const value = localStorage.getItem('hopla_' + key);
+      this.form.get(key).setValue(value);
     });
   }
 
