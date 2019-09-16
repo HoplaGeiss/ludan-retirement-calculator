@@ -3,6 +3,7 @@
   "rules": {
     "directive-selector": [true, "attribute", "ngx-ludan", "camelCase"],
     "component-selector": [true, "element", "ngx-ludan", "kebab-case"],
+    "curly": false,
     "no-debugger": false
   }
 }

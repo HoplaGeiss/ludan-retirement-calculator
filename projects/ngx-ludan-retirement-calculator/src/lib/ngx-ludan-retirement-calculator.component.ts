@@ -67,9 +67,9 @@ function greaterThanZero(control: FormControl): { [key: string]: any } {
 })
 export class NgxLudanRetirementCalculatorComponent implements OnInit {
   form = this.fb.group({
-    capitalInvested: [10000, [numberValidator.bind(this)]],
+    capitalInvested: [10000, [numberValidator.bind(this), greaterThanZero.bind(this)]],
     investmentPerMonth: [1000, [numberValidator.bind(this), greaterThanZero.bind(this)]],
-    interestRate: [2, [numberValidator.bind(this)]],
+    interestRate: [2, [numberValidator.bind(this), greaterThanZero.bind(this)]],
     numberRetirementYears: [30, [numberValidator.bind(this), greaterThanZero.bind(this)]],
     monthlyDividendGoal: [2000, [numberValidator.bind(this), greaterThanZero.bind(this)]]
   });
@@ -80,14 +80,12 @@ export class NgxLudanRetirementCalculatorComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.getSettings();
     this.calculateSavingGoal();
     this.calculateMonthLeftToRetirement();
-    this.getSettings();
 
     this.form.valueChanges.subscribe(() => {
-      if (this.form.invalid) {
-        return;
-      }
+      if (this.form.invalid) return;
       this.saveSettings();
       this.calculateSavingGoal();
       this.calculateMonthLeftToRetirement();
@@ -100,10 +98,10 @@ export class NgxLudanRetirementCalculatorComponent implements OnInit {
     });
   }
 
-  getSettings = () => {
+  getSettings = async () => {
     Object.keys(this.form.value).forEach(key => {
       const value = localStorage.getItem('hopla_' + key);
-      this.form.get(key).setValue(value);
+      if (value !== null) this.form.get(key).setValue(value);
     });
   }
 
